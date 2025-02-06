@@ -23,6 +23,7 @@ class SecurityHeaders
         $response = $next($request);
 
         if (App::isProduction()) {
+
             $headers = $response->headers;
 
             // Prevents the page from being embedded in an iframe to mitigate clickjacking attacks.

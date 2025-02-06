@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Lightit\Shared\App\Exceptions\InvalidActionException;
 
 Route::get('/', function(){
-    return view('welcome');
+    return view('layouts.app');
 });
 
 Route::get('invalid', static fn() => throw new InvalidActionException("Is not valid"));

@@ -39,6 +39,10 @@ class Task extends Model
         'employee_id',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<Employee, $this>
+    */
+
     public function employee(): BelongsTo
     {
         return $this->belongsTo(Employee::class);

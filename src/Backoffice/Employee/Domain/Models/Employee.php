@@ -35,6 +35,10 @@ class Employee extends Model
         'email',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<Task, $this>
+     */
+
     public function tasks(): HasMany
     {
         return $this->hasMany(Task::class);
