@@ -28,6 +28,8 @@ use Lightit\Backoffice\Employee\Domain\Models\Employee;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Task whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Task whereUpdatedAt($value)
  *
+ * @property-read Employee|null $employee
+ *
  * @mixin \Eloquent
  */
 class Task extends Model

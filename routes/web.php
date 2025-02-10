@@ -1,8 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Lightit\Backoffice\Employee\App\Controllers\ListEmployeesController;
 use Lightit\Shared\App\Exceptions\InvalidActionException;
 use Lightit\Backoffice\Employee\App\Controllers\StoreEmployeeController;
+use Lightit\Backoffice\Task\App\Controllers\GetTaskController;
+use Lightit\Backoffice\Task\App\Controllers\ListTasksController;
+use Lightit\Backoffice\Task\App\Controllers\StoreTaskController;
 use Lightit\Backoffice\Task\App\Controllers\UpsertTaskController;
 
 Route::get('/', function(){
@@ -11,13 +15,13 @@ Route::get('/', function(){
 
 Route::post('/employees', StoreEmployeeController::class)->name('employees');
 
-// Route::get('/employees', ListEmployeesController::class);
+Route::get('/employees', ListEmployeesController::class);
 
-// Route::get('/tasks', ListTasksController::class);
+Route::get('/tasks', ListTasksController::class);
 
-// Route::get('/tasks/{task}', GetTaskController::class);
+Route::get('/tasks/{task}', GetTaskController::class);
 
-// Route::post('/tasks', UpsertTaskController::class)->name('tasks');
+Route::post('/tasks', UpsertTaskController::class)->name('tasks');
 
 Route::get('invalid', static fn() => throw new InvalidActionException("Is not valid"));
 
