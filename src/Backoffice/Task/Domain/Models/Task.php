@@ -6,6 +6,7 @@ namespace Lightit\Backoffice\Task\Domain\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Notifications\Notifiable;
 use Lightit\Backoffice\Employee\Domain\Models\Employee;
 
 /**
@@ -34,6 +35,8 @@ use Lightit\Backoffice\Employee\Domain\Models\Employee;
  */
 class Task extends Model
 {
+    use Notifiable;
+
     protected $fillable = [
         'title',
         'description',
