@@ -22,7 +22,7 @@ class StoreEmployeeRequest extends FormRequest
     {
         return [
             self::NAME => ['required'],
-            self::EMAIL => ['required', 'email:strict', Rule::unique((new Employee())->getTable())],
+            self::EMAIL => ['required', 'email:strict', Rule::unique(Employee::class)],
         ];
     }
 

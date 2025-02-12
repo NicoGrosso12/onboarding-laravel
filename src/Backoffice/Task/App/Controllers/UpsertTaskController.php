@@ -19,6 +19,10 @@ class UpsertTaskController
 
         return responder()
             ->success($task, TaskTransformer::class)
-            ->respond();
+            ->respond(
+                $task->wasRecentlyCreated
+                    ? JsonResponse::HTTP_CREATED
+                    : JsonResponse::HTTP_OK
+            );
     }
 }

@@ -6,20 +6,15 @@ namespace Lightit\Backoffice\Task\App\Controllers;
 
 use Illuminate\Http\JsonResponse;
 use Lightit\Backoffice\Task\App\Transformers\TaskTransformer;
-use Lightit\Backoffice\Task\Domain\Actions\GetTaskAction;
+use Lightit\Backoffice\Task\Domain\Models\Task;
 
 class GetTaskController
 {
-    public function __invoke(
-        GetTaskAction $getTaskAction,
-        int $taskId,
-    ): JsonResponse {
-        $task = $getTaskAction->execute($taskId);
+    public function __invoke(Task $task): JsonResponse
+    {
 
-        if (! $task) {
-            return response()->json(['error' => 'Task not found'], JsonResponse::HTTP_NOT_FOUND);
-        }
-
-        return responder()->success($task, TaskTransformer::class)->respond(JsonResponse::HTTP_OK);
+        return responder()
+            ->success($task, TaskTransformer::class)
+            ->respond();
     }
 }

@@ -8,9 +8,10 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Lightit\Backoffice\Employee\Domain\Models\Employee;
 use Lightit\Backoffice\Task\Domain\Models\Task;
 
-class TaskAssignmentNotifications extends Notification implements ShouldQueue
+class TaskAssignmentNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -26,9 +27,8 @@ class TaskAssignmentNotifications extends Notification implements ShouldQueue
         return ['mail'];
     }
 
-    public function toMail(): MailMessage
+    public function toMail(Employee $employee): MailMessage
     {
-        $assignedEmployee = $this->task->employee;
 
         return (new MailMessage())
             ->subject('Task assignment notification')
@@ -36,8 +36,8 @@ class TaskAssignmentNotifications extends Notification implements ShouldQueue
                 'mail.assigned-task',
                 [
                     'task' => $this->task,
-                    'assignedEmployee' => $assignedEmployee,
-                    'date' => now()->toDateString(),
+                    'assignedEmployee' => $employee,
+                    'date' => $this->task->created_at->toDateString(),
                 ]
             );
     }
