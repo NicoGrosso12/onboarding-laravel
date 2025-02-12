@@ -29,7 +29,6 @@ class TaskAssignmentNotification extends Notification implements ShouldQueue
 
     public function toMail(Employee $employee): MailMessage
     {
-
         return (new MailMessage())
             ->subject('Task assignment notification')
             ->view(
@@ -37,7 +36,7 @@ class TaskAssignmentNotification extends Notification implements ShouldQueue
                 [
                     'task' => $this->task,
                     'assignedEmployee' => $employee,
-                    'date' => $this->task->created_at->toDateString(),
+                    'date' => $this->task->created_at ? $this->task->created_at->toDateString() : now()->toDateString(),
                 ]
             );
     }
