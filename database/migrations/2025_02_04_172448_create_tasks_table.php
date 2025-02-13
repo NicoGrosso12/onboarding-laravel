@@ -14,7 +14,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->enum('status', ['pending', 'in_progress', 'completed'])->default('pending');
+            $table->string('status')->default('pending');
             $table->foreignId('employee_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });

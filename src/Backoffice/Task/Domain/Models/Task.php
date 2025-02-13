@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Notifications\Notifiable;
 use Lightit\Backoffice\Employee\Domain\Models\Employee;
+use Lightit\Backoffice\Task\Domain\Enums\TaskStatus;
 
 /**
  * @property int                             $id
@@ -30,6 +31,8 @@ use Lightit\Backoffice\Employee\Domain\Models\Employee;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Task whereUpdatedAt($value)
  *
  * @property-read Employee|null $employee
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
+ * @property-read int|null $notifications_count
  *
  * @mixin \Eloquent
  */
@@ -42,6 +45,10 @@ class Task extends Model
         'description',
         'status',
         'employee_id',
+    ];
+
+    protected $casts = [
+        'status' => TaskStatus::class,
     ];
 
     /**
